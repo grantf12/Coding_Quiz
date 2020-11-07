@@ -59,10 +59,10 @@ var choiceD = document.querySelector("#choiceD")
 var secondsLeft = 60
 
 
-
+// variable used to determine what the current question is
 var currentQuestionIndex = 0
 
-
+//displays the current question and its choices
 function displayQuestion() {
 
     questionText.textContent = questions[currentQuestionIndex].question;
@@ -83,9 +83,10 @@ function answerChosen(answer) {
     }
     // currentQuestionIndex increases by 1, which will change to the next question
     currentQuestionIndex++;
-    // When currentQuestionIndex exceeds the number of quesitons, the game will end
-    if (currentQuestionIndex > 3) {
-        localStorage.setItem("Score", secondsLeft);
+    // When currentQuestionIndex exceeds the number of quesitons (-1 to take into account the array number starting at 0), the game will end
+    if (currentQuestionIndex > questions.length -1) {
+        //Score is saved to localStorage and user is sent to highscore page
+        localStorage.setItem("score", secondsLeft);
         window.location.href = "highscore.HTML";
     }
 
@@ -106,10 +107,10 @@ function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timerSpan.textContent = secondsLeft;
-        //if timer reaches 0, game ends and sends score to the highscore HTML
+        //if timer reaches 0, game ends and sends score to the localStorage and user is sent to highscore HTML
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            localStorage.setItem("Score", secondsLeft);
+            localStorage.setItem("score", secondsLeft);
             window.location.href = "highscore.HTML";
         }
     }, 1000);
@@ -120,5 +121,3 @@ function setTime() {
 
 
 
-
-//____choicelist______?.addEventListener("click", answerChosen)
