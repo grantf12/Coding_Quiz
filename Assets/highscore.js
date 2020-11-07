@@ -5,8 +5,13 @@ var highscoreForm = document.querySelector("#highscoreForm")
 var submitBtn = document.querySelector("#submitInitials")
 var goBackBtn = document.querySelector("#goBackBtn")
 var initials =[];
+var score = [];
 
-// Receives the intials from the input and makes a li element for them
+// Alerts user to enter their initials
+alert("Please enter your initials to see your final score.")
+init();
+
+// Receives the initials from the input and makes a li element for them
 function renderInitials() {
     //Clears input element
     initialsInput.innerHTML = "";
@@ -24,22 +29,31 @@ function renderInitials() {
 }
 
 function init() {
-    //gets stored intials from local storage
+    //gets stored initials from local storage
     //parsing the JSON string to an object
-    var storedIntitials = JSON.parse(localStorage.getItem("initials"));
+    var storedInitials = JSON.parse(localStorage.getItem("initials"));
 
-    //if intials were retrieved from local storage, update intials array
-    if (storedIntitials !== null) {
-        initials = storedIntitials;
+    //if initials were retrieved from local storage, update initials array
+    if (storedInitials !== null) {
+        initials = storedInitials;
     }
 
-    //render the intials to the DOM
+    //render the initials to the DOM
     renderInitials();
 }
 
 function storeInitials() {
-    //stringify and set "intials" key in local storage to initials array
+    //stringify and set "initials" key in local storage to initials array
     localStorage.setItem("initials", JSON.stringify(initials));
+}
+
+function callScore() {
+    //gets stored score from local storage
+    var storedScore = JSON.parse(localStorage.getItem("score"));
+    if (storedScore !== null) {
+        var score = setScore;
+        localStorage.setItem("setScore.getAttribute(value)", "score")
+    }
 }
 
 //When for is submitted..
@@ -53,16 +67,15 @@ submitBtn.addEventListener("click", function(event) {
         return;
     }
 
-    //Add new initialsText to intialsArray, then clear the input
+    //Add new initialsText to initialsArray, then clear the input
     initials.push(initialsText);
-    initialsText.value = "";
+    initialsInput.value = "";
 
-    //store updated intials in local storage; then rerender the list
+    //store updated initials in local storage; then rerender the list
     storeInitials();
     renderInitials();
+
 });
 
 
-//function displayHighscore(score, intinals) { 
-//
-//}
+
