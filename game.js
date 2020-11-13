@@ -87,7 +87,7 @@ function answerChosen(answer) {
     if (currentQuestionIndex > questions.length -1) {
         //Score is saved to localStorage and user is sent to highscore page
         localStorage.setItem("score", secondsLeft);
-        window.location.href = "highscore.HTML";
+        window.location.href = "highscore.html";
     }
 
     displayQuestion();
@@ -111,7 +111,7 @@ function setTime() {
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             localStorage.setItem("score", secondsLeft);
-            window.location.href = "highscore.HTML";
+            window.location.href = "highscore.html";
         }
     }, 1000);
 }
